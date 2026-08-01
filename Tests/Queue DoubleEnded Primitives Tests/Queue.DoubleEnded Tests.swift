@@ -34,7 +34,6 @@ struct `Deque Column Law Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
 
-
     @Test
     func `the direct growable-ring column obeys the seam ledger laws`() {
         let violations = Seam.Ledger.violations(
@@ -77,7 +76,6 @@ struct `Deque Core Tests` {
     @Suite struct Unit {}
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
-
 
     @Test
     func `pushes and pops at both ends; wrap-safe order`() {
@@ -164,7 +162,6 @@ struct `Deque CoW Tests` {
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
 
-
     @Test
     func `pushes at both ends detach from siblings through the box`() {
         var d1 = CoWDeque<Int>(minimumCapacity: 4)
@@ -212,7 +209,6 @@ struct `Deque Teardown Tests` {
     @Suite struct Unit {}
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
-
 
     @Test
     func `move-only elements at both ends tear down exactly once`() {
@@ -289,7 +285,6 @@ struct `Deque Sendable Tests` {
     @Suite struct Unit {}
     @Suite struct `Edge Case` {}
     @Suite struct Integration {}
-
 
     @Test
     func `sendable composes through the columns`() {
