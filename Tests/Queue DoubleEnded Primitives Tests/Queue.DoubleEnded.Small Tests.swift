@@ -27,6 +27,9 @@ import Testing
 
 @Suite
 struct `Deque Small Door Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
 
     @Test
     func `the door resolves and is FIFO across the inline→heap spill (byte budget)`() {
@@ -37,7 +40,7 @@ struct `Deque Small Door Tests` {
 
         // Push 16 `Int`s (128 bytes) to the back, past the 64-byte inline budget, forcing
         // at least one inline→heap spill during growth (the ring's form-2 grow path).
-        for value in 1...16 {
+        (1...16).forEach { value in
             d.push(value, to: .back)
         }
         #expect(d.count == Index<Int>.Count(16))
@@ -111,6 +114,7 @@ private enum DequeSmallProbe {
 }
 
 extension DequeSmallProbe {
+    // SAFETY: test-only counter, mutated solely from the single-threaded test body between reset() and destroyedSorted reads.
     nonisolated(unsafe) static var _destroyed: [Int] = []
     static func reset() { unsafe _destroyed = [] }
     static func recordDestroy(_ id: Int) { unsafe _destroyed.append(id) }

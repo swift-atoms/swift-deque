@@ -30,6 +30,10 @@ private typealias FixedDeque<E: ~Copyable> = Deque<BoundedRing<E>>
 
 @Suite
 struct `Deque Column Law Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
 
     @Test
     func `the direct growable-ring column obeys the seam ledger laws`() {
@@ -70,6 +74,10 @@ struct `Deque Column Law Tests` {
 
 @Suite(.serialized)
 struct `Deque Core Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
 
     @Test
     func `pushes and pops at both ends; wrap-safe order`() {
@@ -152,6 +160,10 @@ struct `Deque Core Tests` {
 
 @Suite(.serialized)
 struct `Deque CoW Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
 
     @Test
     func `pushes at both ends detach from siblings through the box`() {
@@ -197,6 +209,10 @@ struct `Deque CoW Tests` {
 
 @Suite(.serialized)
 struct `Deque Teardown Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
 
     @Test
     func `move-only elements at both ends tear down exactly once`() {
@@ -244,6 +260,7 @@ private enum DequeProbe {
 }
 
 extension DequeProbe {
+    // SAFETY: test-only counter, mutated solely from the single-threaded test body between reset() and destroyedSorted reads.
     nonisolated(unsafe) static var _destroyed: [Int] = []
     static func reset() { unsafe _destroyed = [] }
     static func recordDestroy(_ id: Int) { unsafe _destroyed.append(id) }
@@ -260,6 +277,7 @@ private enum DequeProbe2 {
 }
 
 extension DequeProbe2 {
+    // SAFETY: test-only counter, mutated solely from the single-threaded test body between reset() and destroyedSorted reads.
     nonisolated(unsafe) static var _destroyed: [Int] = []
     static func reset() { unsafe _destroyed = [] }
     static func recordDestroy(_ id: Int) { unsafe _destroyed.append(id) }
@@ -268,6 +286,10 @@ extension DequeProbe2 {
 
 @Suite
 struct `Deque Sendable Tests` {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
 
     @Test
     func `sendable composes through the columns`() {
