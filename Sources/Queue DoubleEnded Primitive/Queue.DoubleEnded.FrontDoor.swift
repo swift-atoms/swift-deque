@@ -32,5 +32,7 @@ extension __Queue where S: Store.`Protocol` & ~Copyable {
     /// (`Deque Primitives`) or the carrier's pinned constructors; their own front-door
     /// aliases are consumer-pulled and land as they gain live consumers.
     public typealias DoubleEnded =
-        __QueueDoubleEnded<Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<S.Element>>.Ring>
+        __QueueDoubleEnded<
+            Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<S.Element>>.Ring
+        >
 }
