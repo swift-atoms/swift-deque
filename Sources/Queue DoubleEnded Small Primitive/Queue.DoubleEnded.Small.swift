@@ -47,5 +47,7 @@ extension __QueueDoubleEnded where S: ~Copyable, S: Store.Direct {
     /// `__QueueDoubleEnded` ([DS-029] form 2, `Resource: Memory.Growable`) serve this column
     /// with no per-leaf duplication.
     public typealias Small<let n: Int> =
-        __QueueDoubleEnded<Buffer<Storage<Memory.Allocator<Memory.Small<n>>>.Contiguous<S.Element>>.Ring>
+        __QueueDoubleEnded<
+            Buffer<Storage<Memory.Allocator<Memory.Small<n>>>.Contiguous<S.Element>>.Ring
+        >
 }

@@ -55,7 +55,9 @@ struct `Deque Column Law Tests` {
     @Test
     func `the shared growable-ring column obeys the seam ledger laws`() {
         let violations = Seam.Ledger.violations(
-            makeEmpty: { Ownership.Shared(GrowableRing<Int>(minimumCapacity: Index<Int>.Count(4))) },
+            makeEmpty: {
+                Ownership.Shared(GrowableRing<Int>(minimumCapacity: Index<Int>.Count(4)))
+            },
             element: { $0 }
         )
         #expect(violations.isEmpty, "\(violations)")
@@ -235,7 +237,9 @@ struct `Deque Teardown Tests` {
     func `the boxed lane tears down via the box drain`() {
         DequeProbe2.reset()
         do {
-            var d = Deque<Ownership.Shared<DequeItem2, GrowableRing<DequeItem2>>>(minimumCapacity: 2)
+            var d = Deque<Ownership.Shared<DequeItem2, GrowableRing<DequeItem2>>>(
+                minimumCapacity: 2
+            )
             d.push(DequeItem2(7), to: .back)
             d.push(DequeItem2(8), to: .front)
             let n = d.count

@@ -52,7 +52,9 @@ struct `Deque Small Door Tests` {
     }
 
     @Test
-    func `the door supports both ends + the growable family surface (push / pop / reserve / clear / clone)`() {
+    func
+        `the door supports both ends + the growable family surface (push / pop / reserve / clear / clone)`()
+    {
         var d = Queue<Int>.DoubleEnded.Small<64>()
         d.push(1, to: .back)  // [1]
         d.push(2, to: .back)  // [1, 2]
@@ -79,7 +81,9 @@ struct `Deque Small Door Tests` {
     }
 
     @Test
-    func `the door is reachable from a MOVE-ONLY element and tears down exactly once (M1 restatement)`() {
+    func
+        `the door is reachable from a MOVE-ONLY element and tears down exactly once (M1 restatement)`()
+    {
         // Compile-probe: `Queue<DequeSmallItem>.DoubleEnded.Small<64>` typechecks ONLY if
         // the door extension restates `where S: ~Copyable` (M1) — the canonical column is
         // move-only, so a bare `where S: Store.Direct` would re-impose Copyable and make
