@@ -12,21 +12,18 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // MARK: - Type module (lean ~Copyable types; Copyable-requiring conformances live in the ops module per [MOD-004])
+
         .library(name: "Queue DoubleEnded Primitive", targets: ["Queue DoubleEnded Primitive"]),
-        // MARK: - Ops module; `Queue DoubleEnded Primitives` doubles as the [MOD-005] umbrella
+
         .library(name: "Queue DoubleEnded Primitives", targets: ["Queue DoubleEnded Primitives"]),
-        // Convenience alias product matching the package name (the top-level `Deque<S>` typealias).
+
         .library(name: "Deque Primitives", targets: ["Deque Primitives"]),
 
-        // MARK: - Small variant ([DS-027].1: own product, NOT umbrella-re-exported)
         .library(
             name: "Queue DoubleEnded Small Primitive",
             targets: ["Queue DoubleEnded Small Primitive"]
         ),
 
-        // MARK: - Fixed variant: DELETED at the ADT-families reshape (ASK-E — the
-        // fixed-capacity story lives in the COLUMN: Queue<Buffer<…>.Ring.Bounded>.DoubleEnded)
     ],
     dependencies: [
         .package(
@@ -41,8 +38,7 @@ let package = Package(
             url: "https://github.com/swift-primitives/swift-buffer-ring-primitives.git",
             branch: "main"
         ),
-        // swift-memory-small-primitives: for the `Queue DoubleEnded Small Primitive` variant
-        // target ONLY ([DS-027].1) — `Queue<E>.DoubleEnded.Small<n>`'s Memory.Small<n> leaf.
+
         .package(
             url: "https://github.com/swift-primitives/swift-memory-small-primitives.git",
             branch: "main"
@@ -82,7 +78,6 @@ let package = Package(
     ],
     targets: [
 
-        // MARK: - Type module — Queue<S>.DoubleEnded (the deque over the ring columns)
         .target(
             name: "Queue DoubleEnded Primitive",
             dependencies: [
@@ -120,7 +115,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Ops module + umbrella ([MOD-005]: re-exports the in-package type module only)
         .target(
             name: "Queue DoubleEnded Primitives",
             dependencies: [
@@ -159,10 +153,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Small type ([DS-027].1: own product, NO umbrella re-export — keeps the
-        //         heap-only consumers' closure lean; the Memory.Small<n> leaf dep lands on
-        //         THIS target only. The door's ops flow from __QueueDoubleEnded's
-        //         allocation-generic pins in `Queue DoubleEnded Primitives`.)
         .target(
             name: "Queue DoubleEnded Small Primitive",
             dependencies: [
@@ -182,7 +172,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Deque umbrella — the top-level `Deque<S>` typealias + package-name-facing re-export
         .target(
             name: "Deque Primitives",
             dependencies: [
@@ -193,7 +182,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Tests
         .testTarget(
             name: "Queue DoubleEnded Primitives Tests",
             dependencies: [

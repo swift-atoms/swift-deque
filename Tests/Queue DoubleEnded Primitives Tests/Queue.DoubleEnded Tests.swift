@@ -14,8 +14,6 @@ import Storage_Contiguous_Primitives
 import Tagged_Primitives_Standard_Library_Integration
 import Testing
 
-// The column-keyed deque suite over the same four ring columns as the queue.
-
 private typealias HeapStorage<E: ~Copyable> =
     Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>
 
@@ -25,8 +23,6 @@ private typealias BoundedRing<E: ~Copyable> = Buffer<HeapStorage<E>>.Ring.Bounde
 private typealias MoveDeque<E: ~Copyable> = Deque<GrowableRing<E>>
 private typealias CoWDeque<E: ~Copyable> = Deque<Ownership.Shared<E, GrowableRing<E>>>
 private typealias FixedDeque<E: ~Copyable> = Deque<BoundedRing<E>>
-
-// MARK: - [DS-024]: the columns are lawful from the deque family's own suite
 
 @Suite
 struct `Deque Column Law Tests` {
@@ -83,7 +79,7 @@ struct `Deque Core Tests` {
     func `pushes and pops at both ends; wrap-safe order`() {
         var d = MoveDeque<Int>(minimumCapacity: 4)
         d.push(2, to: .back)
-        d.push(1, to: .front)  // head retreats (wraps physically)
+        d.push(1, to: .front)
         d.push(3, to: .back)
         let n = d.count
         #expect(n == Index<Int>.Count(3))
@@ -169,7 +165,7 @@ struct `Deque CoW Tests` {
         var d1 = CoWDeque<Int>(minimumCapacity: 4)
         d1.push(2, to: .back)
         let d2 = d1
-        d1.push(1, to: .front)  // withUnique(consuming:) detaches first
+        d1.push(1, to: .front)
         let mine = d1.count
         let theirs = d2.count
         #expect(mine == Index<Int>.Count(2))
@@ -218,7 +214,7 @@ struct `Deque Teardown Tests` {
         do {
             var d = MoveDeque<DequeItem>(minimumCapacity: 4)
             d.push(DequeItem(2), to: .back)
-            d.push(DequeItem(1), to: .front)  // wrapped two-run state
+            d.push(DequeItem(1), to: .front)
             d.push(DequeItem(3), to: .back)
             if let front = d.pop(from: .front) {
                 let id = front.id
@@ -260,7 +256,7 @@ private enum DequeProbe {
 }
 
 extension DequeProbe {
-    // SAFETY: test-only counter, mutated solely from the single-threaded test body between reset() and destroyedSorted reads.
+
     nonisolated(unsafe) static var _destroyed: [Int] = []
     static func reset() { unsafe _destroyed = [] }
     static func recordDestroy(_ id: Int) { unsafe _destroyed.append(id) }
@@ -277,7 +273,7 @@ private enum DequeProbe2 {
 }
 
 extension DequeProbe2 {
-    // SAFETY: test-only counter, mutated solely from the single-threaded test body between reset() and destroyedSorted reads.
+
     nonisolated(unsafe) static var _destroyed: [Int] = []
     static func reset() { unsafe _destroyed = [] }
     static func recordDestroy(_ id: Int) { unsafe _destroyed.append(id) }
