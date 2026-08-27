@@ -1,6 +1,6 @@
-import Deque_Primitives
-import Index_Primitives
-import Memory_Small_Primitives
+import Deque
+import Index
+import Memory_Small
 import Queue_DoubleEnded_Small_Primitive
 import Queue_Primitive
 import Testing

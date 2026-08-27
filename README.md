@@ -1,7 +1,7 @@
-# Deque Primitives
+# Deque
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
-[![CI](https://github.com/swift-primitives/swift-deque-primitives/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-primitives/swift-deque-primitives/actions/workflows/ci.yml)
+[![CI](https://github.com/swift-molecules/swift-deque/actions/workflows/ci.yml/badge.svg)](https://github.com/swift-molecules/swift-deque/actions/workflows/ci.yml)
 
 `Deque<S>` — a double-ended queue generic over its storage **column**. It is `Queue<S>.DoubleEnded`: the FIFO queue's generalization that pushes and pops at *both* ends in O(1). The backing is a ring (`Buffer.Ring`), so a front push retreats the head and a back push advances the tail — neither shifts elements. As with the rest of the family, copyability and capacity flow from the column: a move-only ring is zero-cost and move-only, a `Shared` ring is copy-on-write, and a bounded ring is fixed-capacity.
 
@@ -21,8 +21,8 @@ The element surface (`push`/`pop` at a `Position`, `peek`, `drain`) is written o
 ## Quick Start
 
 ```swift
-import Deque_Primitives
-import Column_Primitives
+import Deque
+import Column
 
 // Move-only by default, over a growable ring column:
 var deque = Deque<Column.Ring<Int>>()
@@ -40,7 +40,7 @@ Add the dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-deque-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-deque.git", branch: "main")
 ]
 ```
 
@@ -50,7 +50,7 @@ Add the product to your target:
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Deque Primitives", package: "swift-deque-primitives")
+        .product(name: "Deque", package: "swift-deque")
     ]
 )
 ```
@@ -63,7 +63,7 @@ The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. R
 
 | Product | Contents | When to import |
 |---------|----------|----------------|
-| `Deque Primitives` | Umbrella — the `Deque<S>` alias (= `Queue<S>.DoubleEnded`), the type, and its conformances | Most consumers |
+| `Deque` | Umbrella — the `Deque<S>` alias (= `Queue<S>.DoubleEnded`), the type, and its conformances | Most consumers |
 | `Queue DoubleEnded Primitive` | The `Queue.DoubleEnded` value type alone, without the conformances | Minimal-surface use that names the type directly |
 
 ---
@@ -82,9 +82,9 @@ The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. R
 
 ## Related Packages
 
-- [`swift-queue-primitives`](https://github.com/swift-primitives/swift-queue-primitives) — the FIFO queue this double-ends; `Deque<S>` is `Queue<S>.DoubleEnded`.
-- [`swift-buffer-ring-primitives`](https://github.com/swift-primitives/swift-buffer-ring-primitives) — the ring column the deque is built over.
-- [`swift-column-primitives`](https://github.com/swift-primitives/swift-column-primitives) — the column vocabulary (`Column.Ring`, …) the deque composes.
+- [`swift-queue`](https://github.com/swift-molecules/swift-queue) — the FIFO queue this double-ends; `Deque<S>` is `Queue<S>.DoubleEnded`.
+- [`swift-buffer-ring`](https://github.com/swift-molecules/swift-buffer-ring) — the ring column the deque is built over.
+- [`swift-column`](https://github.com/swift-molecules/swift-column) — the column vocabulary (`Column.Ring`, …) the deque composes.
 
 ---
 
