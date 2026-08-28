@@ -1,4 +1,4 @@
-public import Deque
+public import Queue_DoubleEnded_Primitive
 
 extension __QueueDoubleEnded: Equatable where S: Equatable {
 

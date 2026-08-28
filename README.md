@@ -63,9 +63,8 @@ The package is pre-1.0 — depend on `branch: "main"` until `0.1.0` is tagged. R
 
 | Product | Contents | When to import |
 |---------|----------|----------------|
-| `Deque` | The `Deque<S>` double-ended queue value type | Most consumers |
-| `Deque Standard Library Integration` | Conformances to Swift standard library protocols (`Equatable`, `Hashable`) | With the standard library surface |
-| `Deque Apple Foundation Integration` | Foundation-facing surface | With Foundation |
+| `Deque` | Umbrella — the `Deque<S>` alias (= `Queue<S>.DoubleEnded`), the type, and its conformances | Most consumers |
+| `Queue DoubleEnded Primitive` | The `Queue.DoubleEnded` value type alone, without the conformances | Minimal-surface use that names the type directly |
 
 ---
 
