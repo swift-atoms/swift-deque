@@ -4,7 +4,7 @@ public import Memory_Allocator_Primitive
 public import Memory
 public import Queue_Primitive
 public import Storage_Contiguous
-public import Store_Protocol
+public import Store
 
 extension __Queue where S: Store.`Protocol` & ~Copyable {
 

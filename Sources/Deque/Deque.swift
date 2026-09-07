@@ -1,5 +1,5 @@
-public import Buffer_Protocol
+public import Buffer
 public import Queue_DoubleEnded
-public import Store_Protocol
+public import Store
 
 public typealias Deque<S: Store.`Protocol` & Buffer.`Protocol` & ~Copyable> = __QueueDoubleEnded<S>

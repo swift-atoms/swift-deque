@@ -1,9 +1,9 @@
 import Affine_Standard_Library_Integration
-public import Buffer_Protocol
+public import Buffer
 import Index
 import Ordinal_Standard_Library_Integration
 public import Queue_DoubleEnded_Primitive
-public import Store_Protocol
+public import Store
 
 extension __QueueDoubleEnded where S: ~Copyable, S: Store.`Protocol` & Buffer.`Protocol` {
 
