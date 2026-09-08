@@ -1,12 +1,12 @@
-public import Buffer_Primitive
+public import Buffer
 public import Buffer_Ring_Bounded_Primitive
 public import Buffer_Ring_Primitive
 public import Index
-public import Memory_Allocator_Primitive
+public import Memory_Allocator
 public import Memory_Allocator_Protocol
 public import Memory
 public import Ownership_Shared_Primitive
-public import Storage_Contiguous
+public import Storage_Memory
 public import Store
 
 @_documentation(visibility: public)

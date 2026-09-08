@@ -26,12 +26,17 @@ let package = Package(
 
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-molecules/swift-storage-memory.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-atoms/swift-store.git",
+            branch: "main"
+        ),
         .package(
             url: "https://github.com/swift-molecules/swift-queue.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-buffer.git",
+            url: "https://github.com/swift-atoms/swift-buffer.git",
             branch: "main"
         ),
         .package(
@@ -44,7 +49,7 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-storage.git",
+            url: "https://github.com/swift-atoms/swift-storage.git",
             branch: "main"
         ),
         .package(
@@ -82,34 +87,34 @@ let package = Package(
             name: "Queue DoubleEnded Primitive",
             dependencies: [
                 .product(name: "Queue Primitive", package: "swift-queue"),
-                .product(name: "Buffer Primitive", package: "swift-buffer"),
+                .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
                 .product(
                     name: "Buffer Ring Bounded Primitive",
                     package: "swift-buffer-ring"
                 ),
-                .product(name: "Store Protocol", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
                 .product(
                     name: "Ownership Shared Primitive",
                     package: "swift-ownership-shared"
                 ),
                 .product(
-                    name: "Storage Contiguous",
-                    package: "swift-storage"
+                    name: "Storage Memory",
+                    package: "swift-storage-memory"
                 ),
                 .product(name: "Memory", package: "swift-memory"),
                 .product(
-                    name: "Memory Allocator Primitive",
+                    name: "Memory Allocator",
                     package: "swift-memory-allocation"
                 ),
                 .product(name: "Index", package: "swift-index"),
                 .product(
-                    name: "Ordinal Standard Library Integration",
+                    name: "Ordinal",
                     package: "swift-ordinal"
                 ),
                 .product(
-                    name: "Affine Standard Library Integration",
+                    name: "Affine",
                     package: "swift-affine"
                 ),
             ]
@@ -120,34 +125,34 @@ let package = Package(
             dependencies: [
                 "Queue DoubleEnded Primitive",
                 .product(name: "Queue Primitive", package: "swift-queue"),
-                .product(name: "Buffer Primitive", package: "swift-buffer"),
+                .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
                 .product(
                     name: "Buffer Ring Bounded Primitive",
                     package: "swift-buffer-ring"
                 ),
-                .product(name: "Store Protocol", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
                 .product(
                     name: "Ownership Shared Primitive",
                     package: "swift-ownership-shared"
                 ),
                 .product(
-                    name: "Storage Contiguous",
-                    package: "swift-storage"
+                    name: "Storage Memory",
+                    package: "swift-storage-memory"
                 ),
                 .product(name: "Memory", package: "swift-memory"),
                 .product(
-                    name: "Memory Allocator Primitive",
+                    name: "Memory Allocator",
                     package: "swift-memory-allocation"
                 ),
                 .product(name: "Index", package: "swift-index"),
                 .product(
-                    name: "Ordinal Standard Library Integration",
+                    name: "Ordinal",
                     package: "swift-ordinal"
                 ),
                 .product(
-                    name: "Affine Standard Library Integration",
+                    name: "Affine",
                     package: "swift-affine"
                 ),
             ]
@@ -157,15 +162,15 @@ let package = Package(
             name: "Queue DoubleEnded Small Primitive",
             dependencies: [
                 "Queue DoubleEnded Primitive",
-                .product(name: "Buffer Primitive", package: "swift-buffer"),
+                .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
-                .product(name: "Store Protocol", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
                 .product(
-                    name: "Storage Contiguous",
-                    package: "swift-storage"
+                    name: "Storage Memory",
+                    package: "swift-storage-memory"
                 ),
                 .product(
-                    name: "Memory Allocator Primitive",
+                    name: "Memory Allocator",
                     package: "swift-memory-allocation"
                 ),
                 .product(name: "Memory Small", package: "swift-memory-small"),
@@ -177,7 +182,7 @@ let package = Package(
             dependencies: [
                 "Queue DoubleEnded",
                 .product(name: "Queue Primitive", package: "swift-queue"),
-                .product(name: "Store Protocol", package: "swift-storage"),
+                .product(name: "Store", package: "swift-store"),
                 .product(name: "Buffer", package: "swift-buffer"),
             ]
         ),
@@ -194,11 +199,11 @@ let package = Package(
                 ),
                 .product(name: "Memory Small", package: "swift-memory-small"),
                 .product(
-                    name: "Tagged Standard Library Integration",
+                    name: "Tagged",
                     package: "swift-tagged"
                 ),
                 .product(
-                    name: "Ordinal Standard Library Integration",
+                    name: "Ordinal",
                     package: "swift-ordinal"
                 ),
             ]

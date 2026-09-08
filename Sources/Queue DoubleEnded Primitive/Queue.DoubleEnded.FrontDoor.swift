@@ -1,9 +1,9 @@
-public import Buffer_Primitive
+public import Buffer
 public import Buffer_Ring_Primitive
-public import Memory_Allocator_Primitive
+public import Memory_Allocator
 public import Memory
 public import Queue_Primitive
-public import Storage_Contiguous
+public import Storage_Memory
 public import Store
 
 extension __Queue where S: Store.`Protocol` & ~Copyable {
