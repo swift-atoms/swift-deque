@@ -1,4 +1,3 @@
-# .github/metadata.yaml
 description: "Deque<S> (Queue.DoubleEnded) — a double-ended queue generic over its ring storage column; O(1) push and pop at either end, with ownership and capacity decided by the column."
 topics:
   - molecules
