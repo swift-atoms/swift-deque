@@ -8,7 +8,7 @@ public import Memory
 public import Ownership_Shared_Primitive
 public import Queue_DoubleEnded_Primitive
 public import Queue_Primitive
-public import Storage_Memory
+public import Storage
 
 extension __QueueDoubleEnded where S: ~Copyable {
 

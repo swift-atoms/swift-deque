@@ -6,7 +6,7 @@ public import Memory_Allocator
 public import Memory_Allocator_Protocol
 public import Memory
 public import Ownership_Shared_Primitive
-public import Storage_Memory
+public import Storage
 public import Store
 
 @_documentation(visibility: public)
