@@ -111,7 +111,7 @@ extension __QueueDoubleEnded where S: ~Copyable {
     where
         S == Ownership.Shared<E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring>
     {
-        let capacity: Index.Index<E>.Count = keepingCapacity ? store.capacity : .zero
+        let capacity: Index::Index<E>.Count = keepingCapacity ? store.capacity : .zero
         self.store = Ownership.Shared(
             Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring(
                 minimumCapacity: capacity
@@ -138,14 +138,14 @@ extension __QueueDoubleEnded where S: ~Copyable {
 
     @inlinable
     public mutating func reserve<E: ~Copyable, Resource: Memory.Growable & ~Copyable>(
-        _ minimumCapacity: Index.Index<E>.Count
+        _ minimumCapacity: Index::Index<E>.Count
     )
     where S == Buffer<Storage<Memory.Allocator<Resource>>.Contiguous<E>>.Ring {
         store.reserveCapacity(minimumCapacity)
     }
 
     @inlinable
-    public mutating func reserve<E: ~Copyable>(_ minimumCapacity: Index.Index<E>.Count)
+    public mutating func reserve<E: ~Copyable>(_ minimumCapacity: Index::Index<E>.Count)
     where
         S == Ownership.Shared<E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring>
     {

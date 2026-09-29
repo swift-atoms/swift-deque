@@ -38,27 +38,27 @@ extension __QueueDoubleEnded: Sendable where S: Sendable & ~Copyable {}
 
 extension __QueueDoubleEnded where S: Store.`Protocol` & ~Copyable {
 
-    public typealias Index = Index.Index<S.Element>
+    public typealias Index = Index::Index<S.Element>
 }
 
 extension __QueueDoubleEnded where S: ~Copyable {
 
     @inlinable
     public init<E: ~Copyable, Resource: Memory.Growable & ~Copyable>(
-        minimumCapacity: Index.Index<E>.Count = .zero
+        minimumCapacity: Index::Index<E>.Count = .zero
     )
     where S == Buffer<Storage<Memory.Allocator<Resource>>.Contiguous<E>>.Ring {
         self.init(store: S(minimumCapacity: minimumCapacity))
     }
 
     @inlinable
-    public init<E: ~Copyable>(capacity: Index.Index<E>.Count)
+    public init<E: ~Copyable>(capacity: Index::Index<E>.Count)
     where S == Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring.Bounded {
         self.init(store: S(minimumCapacity: capacity))
     }
 
     @inlinable
-    public init<E>(minimumCapacity: Index.Index<E>.Count = .zero)
+    public init<E>(minimumCapacity: Index::Index<E>.Count = .zero)
     where
         S == Ownership.Shared<E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring>
     {
@@ -72,7 +72,7 @@ extension __QueueDoubleEnded where S: ~Copyable {
     }
 
     @inlinable
-    public init<E: ~Copyable>(minimumCapacity: Index.Index<E>.Count = .zero)
+    public init<E: ~Copyable>(minimumCapacity: Index::Index<E>.Count = .zero)
     where
         S == Ownership.Shared<E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring>
     {
@@ -86,7 +86,7 @@ extension __QueueDoubleEnded where S: ~Copyable {
     }
 
     @inlinable
-    public init<E>(capacity: Index.Index<E>.Count)
+    public init<E>(capacity: Index::Index<E>.Count)
     where
         S == Ownership.Shared<
             E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring.Bounded
@@ -102,7 +102,7 @@ extension __QueueDoubleEnded where S: ~Copyable {
     }
 
     @inlinable
-    public init<E: ~Copyable>(capacity: Index.Index<E>.Count)
+    public init<E: ~Copyable>(capacity: Index::Index<E>.Count)
     where
         S == Ownership.Shared<
             E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring.Bounded
