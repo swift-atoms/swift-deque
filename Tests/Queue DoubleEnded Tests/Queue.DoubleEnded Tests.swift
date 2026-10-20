@@ -1,12 +1,12 @@
 import Buffer
-import Buffer_Test_Support
+import Buffer_Ring
 import Buffer_Ring_Bounded_Primitive
 import Buffer_Ring_Primitive
-import Buffer_Ring
+import Buffer_Test_Support
 import Deque
 import Index
-import Memory_Allocator
 import Memory
+import Memory_Allocator
 import Ordinal
 import Ownership_Shared_Primitive
 import Queue_Primitive

@@ -1,7 +1,7 @@
 public import Buffer
 public import Buffer_Ring_Primitive
-public import Memory_Allocator
 public import Memory
+public import Memory_Allocator
 public import Queue_Primitive
 public import Storage
 public import Store
