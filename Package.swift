@@ -115,7 +115,7 @@ let package = Package(
         .target(
             name: "Queue DoubleEnded",
             dependencies: [
-                "Queue DoubleEnded Primitive",
+                .target(name: "Queue DoubleEnded Primitive"),
                 .product(name: "Queue Primitive", package: "swift-queue"),
                 .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
@@ -149,7 +149,7 @@ let package = Package(
         .target(
             name: "Queue DoubleEnded Small Primitive",
             dependencies: [
-                "Queue DoubleEnded Primitive",
+                .target(name: "Queue DoubleEnded Primitive"),
                 .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
                 .product(name: "Store", package: "swift-store"),
@@ -165,7 +165,7 @@ let package = Package(
         .target(
             name: "Deque",
             dependencies: [
-                "Queue DoubleEnded",
+                .target(name: "Queue DoubleEnded"),
                 .product(name: "Queue Primitive", package: "swift-queue"),
                 .product(name: "Store", package: "swift-store"),
                 .product(name: "Buffer", package: "swift-buffer"),
@@ -176,7 +176,7 @@ let package = Package(
             name: "Queue DoubleEnded Tests",
             dependencies: [
                 .target(name: "Deque"),
-                "Queue DoubleEnded Small Primitive",
+                .target(name: "Queue DoubleEnded Small Primitive"),
                 .product(name: "Buffer Ring", package: "swift-buffer-ring"),
                 .product(
                     name: "Buffer Test Support",
