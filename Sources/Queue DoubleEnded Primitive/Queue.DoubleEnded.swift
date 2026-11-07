@@ -16,11 +16,6 @@ public struct __QueueDoubleEnded<S: ~Copyable>: ~Copyable {
     @usableFromInline
     package var store: S
 
-    public enum Position: Sendable, Equatable {
-        case front
-        case back
-    }
-
     @inlinable
     public init(store: consuming S) {
         self.store = store
@@ -117,5 +112,13 @@ extension __QueueDoubleEnded where S: ~Copyable {
                 )
             )
         )
+    }
+}
+
+extension __QueueDoubleEnded where S: ~Copyable {
+
+    public enum Position: Sendable, Equatable {
+        case front
+        case back
     }
 }
