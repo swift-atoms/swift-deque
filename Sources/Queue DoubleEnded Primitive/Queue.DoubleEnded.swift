@@ -12,14 +12,8 @@ public import Store
 @_documentation(visibility: public)
 @frozen
 public struct __QueueDoubleEnded<S: ~Copyable>: ~Copyable {
-
     @usableFromInline
     package var store: S
-
-    public enum Position: Sendable, Equatable {
-        case front
-        case back
-    }
 
     @inlinable
     public init(store: consuming S) {
@@ -39,12 +33,10 @@ extension __QueueDoubleEnded: Copyable where S: Copyable {}
 extension __QueueDoubleEnded: Sendable where S: Sendable & ~Copyable {}
 
 extension __QueueDoubleEnded where S: Store.`Protocol` & ~Copyable {
-
     public typealias Index = Index::Index<S.Element>
 }
 
 extension __QueueDoubleEnded where S: ~Copyable {
-
     @inlinable
     public init<E: ~Copyable, Resource: Memory.Growable & ~Copyable>(
         minimumCapacity: Index::Index<E>.Count = .zero
@@ -119,3 +111,9 @@ extension __QueueDoubleEnded where S: ~Copyable {
         )
     }
 }
+
+extension __QueueDoubleEnded where S: ~Copyable {
+    public enum Position: Sendable, Equatable {
+        case front
+        case back
+    }}
