@@ -116,7 +116,6 @@ let package = Package(
             name: "Queue DoubleEnded",
             dependencies: [
                 .target(name: "Queue DoubleEnded Primitive"),
-                .product(name: "Queue Primitive", package: "swift-queue"),
                 .product(name: "Buffer", package: "swift-buffer"),
                 .product(name: "Buffer Ring Primitive", package: "swift-buffer-ring"),
                 .product(

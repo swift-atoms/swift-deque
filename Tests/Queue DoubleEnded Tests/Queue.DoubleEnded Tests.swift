@@ -9,7 +9,6 @@ import Memory
 import Memory_Allocator
 import Ordinal
 import Ownership_Shared_Primitive
-import Queue_Primitive
 import Storage
 import Tagged
 import Testing
@@ -121,20 +120,20 @@ extension `Queue.DoubleEnded Tests` {
         }
 
         @Test
-        func `the bounded column carries the fixed contract at both ends`() throws {
+        func `the bounded column carries the fixed contract at both ends`() {
             var d = FixedDeque<Int>(capacity: 2)
-            try d.push(1, to: .back)
-            try d.push(0, to: .front)
-            var thrown = false
-            do throws(__Queue<BoundedRing<Int>>.Error) {
-                try d.push(9, to: .back)
-            } catch {
-                thrown = true
-            }
-            #expect(thrown)
+            let first = d.push(1, to: .back)
+            #expect(first == nil)
+            let second = d.push(0, to: .front)
+            #expect(second == nil)
+            let refusedBack = d.push(9, to: .back)
+            #expect(refusedBack == 9)
+            let refusedFront = d.push(8, to: .front)
+            #expect(refusedFront == 8)
             let front = d.pop(from: .front)
             #expect(front == 0)
-            try d.push(2, to: .back)
+            let accepted = d.push(2, to: .back)
+            #expect(accepted == nil)
             var seen: [Int] = []
             d.drain { seen.append($0) }
             #expect(seen == [1, 2])

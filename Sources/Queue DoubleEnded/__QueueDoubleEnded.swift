@@ -7,7 +7,6 @@ public import Memory_Allocator
 public import Memory_Allocator_Protocol
 public import Ownership_Shared_Primitive
 public import Queue_DoubleEnded_Primitive
-public import Queue_Primitive
 public import Storage
 
 extension __QueueDoubleEnded where S: ~Copyable {
@@ -43,36 +42,40 @@ extension __QueueDoubleEnded where S: ~Copyable {
         }
     }
 
+    /// Inserts `element` at `position`, or hands it back when the deque is full.
+    ///
+    /// - Returns: `nil` when the element was inserted; the refused element
+    ///   itself when `count` equals `capacity`, so it is never destroyed.
     @inlinable
     public mutating func push<E: ~Copyable>(
         _ element: consuming E,
         to position: Position
-    ) throws(__Queue<S>.Error)
+    ) -> E?
     where S == Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring.Bounded {
-        let rejected: E?
         switch position {
         case .front:
-            rejected = store.push.front(element)
+            store.push.front(element)
 
         case .back:
-            rejected = store.push.back(element)
-        }
-        guard rejected == nil else {
-            throw .full
+            store.push.back(element)
         }
     }
 
+    /// Inserts `element` at `position`, or hands it back when the deque is full.
+    ///
+    /// - Returns: `nil` when the element was inserted; the refused element
+    ///   itself when `count` equals `capacity`, so it is never destroyed.
     @inlinable
     public mutating func push<E: ~Copyable>(
         _ element: consuming E,
         to position: Position
-    ) throws(__Queue<S>.Error)
+    ) -> E?
     where
         S == Ownership.Shared<
             E, Buffer<Storage<Memory.Allocator<Memory.Heap>>.Contiguous<E>>.Ring.Bounded
         >
     {
-        let rejected = store.withUnique(consuming: element) { ring, element -> E? in
+        store.withUnique(consuming: element) { ring, element -> E? in
             switch position {
             case .front:
                 return ring.push.front(element)
@@ -80,9 +83,6 @@ extension __QueueDoubleEnded where S: ~Copyable {
             case .back:
                 return ring.push.back(element)
             }
-        }
-        guard rejected == nil else {
-            throw .full
         }
     }
 }
