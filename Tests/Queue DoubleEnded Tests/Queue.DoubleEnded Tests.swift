@@ -9,6 +9,7 @@ import Memory
 import Memory_Allocator
 import Ordinal
 import Ownership_Shared_Primitive
+import Queue_Primitive
 import Storage
 import Tagged
 import Testing
